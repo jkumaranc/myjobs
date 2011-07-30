@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:m="http://metawidget.org/faces"
+                template="/templates/masterLayout.xhtml">
+    <f:loadBundle basename="Resources" var="bundle"/>
+    <ui:define name="content">
+        <h:form id="form">
+            <m:metawidget value="#{mApplications.mApplication}">
+                <f:param name="messageStyleClass" value="inline-error"/>
+            </m:metawidget>
+            <h:commandButton id="submit" value="Update" action="#{mApplications.updateApplication}"/>
+            <m:stub value="#{mApplications.mApplication.updates}">
+                <h:dataTable id="applicationTable" value="#{mApplications.updatesTable}" var="_update"
+                             styleClass="data-table"
+                             columnClasses="column-half, column-half,  column-half,  table-buttons"
+                             rowClasses="row-odd, row-even">
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.date}"/>
+                        </f:facet>
+                        <h:outputText value="#{_update.date}"/>
+                        <f:facet name="footer">
+
+                        </f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.update}"/>
+                        </f:facet>
+                        <h:outputText value="#{_update.update}"/>
+                        <f:facet name="footer">
+                            <h:inputText value="#{mApplications.update.update}" rendered="true"
+                                         rendererType="simple"/>
+                        </f:facet>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.todo}"/>
+                        </f:facet>
+                        <h:outputText value="#{_update.todo}"/>
+                        <f:facet name="footer">
+                            <h:inputText value="#{mApplications.update.todo}" rendered="true"
+                                         rendererType="simple"/>
+                        </f:facet>
+                    </h:column>
+                    <h:column headerClass="column-tiny" footerClass="column-tiny, table-buttons">
+                        <f:facet name="header">
+                            <h:outputText value="---" escape="false"/>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <h:commandButton id="add" value="#{bundle.add}" action="#{mApplications.addUpdate}"/>
+                        </f:facet>
+                    </h:column>
+
+                </h:dataTable>
+            </m:stub>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
