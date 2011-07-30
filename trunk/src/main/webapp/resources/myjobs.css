@@ -1,0 +1,312 @@
+body {
+    height: 100%;
+    color: #333;
+    font: 12px Helvetica, Arial, sans-serif;
+    line-height: 18px;
+}
+
+#container {
+    height: 100%;
+    color: #333;
+    font: 12px Helvetica, Arial, sans-serif;
+    line-height: 18px;
+}
+
+h2 {
+    color: #234362;
+}
+
+a {
+    color: #337810;
+}
+
+p {
+    margin: 0 0 18px;
+}
+
+#wrapper {
+    height: 60%;
+    float: right;
+    width: 100%;
+    margin-left: -33%;
+}
+
+/* Header */
+#header {
+    height: 20%;
+    background: #eee;
+    border-bottom: 2px solid #ddd;
+}
+
+#header h1 {
+    color: #004b6f;
+    margin: 0 0 3px;
+    padding: 24px 18px 0;
+}
+
+#header p {
+    color: #666;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 0 18px;
+}
+
+.formtitle {
+    color: #000099;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 18px;
+    text-align: left;
+
+}
+
+/* Content Style */
+#navigation {
+    border-bottom: 1px solid #ccc;
+    padding-left: 18px;
+}
+
+#navigation ul {
+    padding: 0 18px 9px;
+}
+
+#extra {
+    height: 15%;
+    border-bottom: 1px solid #ccc;
+    padding-left: 18px;
+}
+
+#extra small {
+    font-size: 11px;
+    font-style: italic;
+    line-height: 18px;
+}
+
+#content p, #extra p {
+    padding-right: 18px;
+}
+
+/* Content Positioning and Size */
+#navigation {
+    height: 60%;
+    float: left;
+    width: 30%;
+}
+
+#content {
+    margin-left: 34.3%;
+    height: 60%;
+}
+
+#extra {
+    float: left;
+    clear: left;
+    width: 30%;
+    height: 15%;
+
+}
+
+/* Footer */
+#footer {
+    background: #333;
+    border-bottom: 2px solid #999;
+    clear: both;
+    width: 100%;
+    height: 5%;
+}
+
+#footer a {
+    color: #eee;
+}
+
+#footer	p {
+    color: #ccc;
+    margin: 0;
+    padding: 0 18px 10px;
+}
+
+#footer ul {
+    border-bottom: 1px solid #555;
+    list-style: none;
+    margin: 0 18px 6px;
+    padding: 10px 0 6px;
+}
+
+#footer li {
+    display: inline;
+    font-size: 11px;
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+#navigation, #content, #extra {
+    margin-top: 20px;
+}
+
+.errors {
+    display: block;
+    padding: 5px;
+    background-color: #ff8888;
+    border: 2px solid red;
+    margin-bottom: 20px;
+}
+
+.inline-error {
+    color: #880000;
+    font-size: 8pt;
+    font-weight: bold;
+}
+
+/*
+ * Input forms
+ */
+
+.table-form {
+    width: 100%;
+}
+
+.table-label-column {
+    width: 25%;
+    text-align: left;
+    vertical-align: top;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.table-component-column {
+    width: 75%;
+    text-align: left;
+    vertical-align: top;
+}
+
+.table-component-column input {
+    width: 99%;
+}
+
+.table-component-column select {
+    width: 100%;
+}
+
+.table-component-column textarea {
+    width: 99%;
+    height: 100px;
+}
+
+.table-component-column span input {
+    width: auto;
+}
+
+.table-required-column {
+    width: 1%;
+    color: red;
+    padding-top: 7pt;
+    font-size: 20pt;
+    line-height: 8pt;
+    font-weight: bold;
+}
+
+input, textarea, select {
+    font-family: Arial;
+}
+
+/*
+ * Data tables
+ */
+
+.data-table {
+    width: 100%;
+    border: 1px solid #B3B3FF;
+    margin-top: 10px;
+    background-color: #eaf4f9;
+}
+
+.data-table th, .data-table .header {
+    height: 20px;
+    border-bottom: 1px solid #B3B3FF;
+    font-family: "Trebuchet MS";
+    color: #003333;
+    background-color: #92b0bf;
+}
+
+.row-even {
+    background-color: #EDEDED;
+}
+
+.column-half {
+    width: 30%;
+    text-align: center;
+}
+
+.column-tiny {
+    width: 10%;
+    text-align: center;
+}
+
+.buttons {
+    padding-top: 10px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.buttons input, .buttons button {
+    border: 1px solid #B3B3FF;
+    height: 32px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.table-buttons input, .table-buttons button {
+    border: 1px solid #B3B3FF;
+    height: 21px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    width: 50px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+label {
+    width: 20em;
+    float: left;
+    text-align: left;
+    margin-right: 2em;
+    display: block
+}
+
+.submit input {
+    margin-left: 2em;
+}
+
+input {
+    color: #000033;
+    background: #ccccff;
+    border: 1px solid #ccccff
+}
+
+.submit input {
+    color: #000;
+    background: #ccccff;
+    border: 1px solid #9999ff;
+
+}
+
+#login {
+    color: #000;
+    background: #ccccff;
+    border: 1px solid #1f1f33;
+}
+
+fieldset {
+    border: 1px solid #9999ff;
+    width: 40em
+}
+
+legend {
+    color: #000033;
+    background: #ccccff;
+    border: 1px solid #ccccff;
+    padding: 2px 6px
+}
