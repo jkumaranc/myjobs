@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/masterLayout.xhtml">
+    <f:loadBundle basename="Resources" var="bundle"/>
+    <ui:define name="content">
+        <h:panelGroup rendered="#{!mApplications.user.hasApplications}">
+            <h:outputText value="#{bundle.noapps}" styleClass="formtitle"/>
+            <br/>
+            <br/>
+            <br/>
+            <h:link value="#{bundle.apply_now}" outcome="/secured/new_application.jsf" styleClass="formtitle"/>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{mApplications.user.hasApplications}">
+            <h:form id="form">
+                <h:dataTable id="applicationTable" value="#{mApplications.applicationTable}" var="_application"
+                             styleClass="data-table"
+                             columnClasses="column-half, column-half, column-half, table-buttons"
+                             rowClasses="row-odd, row-even">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.company}"/>
+                        </f:facet>
+                        <h:commandLink action="#{mApplications.editApplication}">
+                            <h:outputText value="#{_application.companyName}"/>
+                        </h:commandLink>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.position}"/>
+                        </f:facet>
+                        <h:outputText value="#{_application.position}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.applied_date}"/>
+                        </f:facet>
+                        <h:outputText value="#{_application.date}"/>
+                    </h:column>
+                    <h:column headerClass="column-tiny" footerClass="column-tiny, table-buttons">
+                        <h:commandButton id="deleteApp" value="#{bundle.delete}"
+                                         action="#{mApplications.deleteApplication}"
+                                         onclick="if(!confirm('#{bundle.confirm_delete}')) return false"
+                                         immediate="true"/>
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>
