@@ -1,3 +1,2 @@
-1) Login errors not displayed in the login screen
-2) No persistent ORM/NoSQL support
-3) No password encryption
+1) No persistent ORM/NoSQL support
+2) No password encryption
