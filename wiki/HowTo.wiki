@@ -1,4 +1,4 @@
-#README for checkout and run the system
+README for checkout and run the system
 
 == System Requirements ==
 
