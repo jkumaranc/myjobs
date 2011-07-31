@@ -1,7 +1,7 @@
 System Requirements
 -----------------------
 1) Java 1.6 or more
-2) maven support
+2) Maven version 3
 3) Tomcat version 6 or more
 
 
