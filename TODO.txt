@@ -1,10 +1,5 @@
-Functionalities
-Test Cases
-cloudfoundary/appengine
-google project
-README.txt
-hide navi
-error
-Issues:
-Annotation Support for Private Properties
-
+1) Add Test Cases
+2) Develop and deploy in cloudfoundary/appengine
+3) Update the wiki more
+4) Blog about the features used
+5) Add the licence contents to non-java files also
