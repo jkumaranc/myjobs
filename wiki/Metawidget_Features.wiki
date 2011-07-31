@@ -3,12 +3,12 @@
 
 = Metawidget Standard Features =
 
-*  Annotations used : @UiLabel, @UiRequired, @UiComesAfter, @UiHidden, @UiMasked, @UiLarge
+ *  Annotations used : @UiLabel, @UiRequired, @UiComesAfter, @UiHidden, @UiMasked, @UiLarge
 
-*  Metawidget Stubs Used
+ *  Metawidget Stubs Used
 m:stub overriding feature is used to do the data table operations
 
-*  PrimeFacesWidgetBuilder is used for the calendar gadget with @UiAttribute(name = "type", value = "java.util.Date")
+ *  PrimeFacesWidgetBuilder is used for the calendar gadget with @UiAttribute(name = "type", value = "java.util.Date")
 
 ----
 
