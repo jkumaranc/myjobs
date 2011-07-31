@@ -45,37 +45,12 @@ public class RegexValidator implements Validator, PartialStateHolder {
         final Pattern mask = Pattern.compile(regex);
         final Matcher matcher = mask.matcher(String.valueOf(value));
         if (!matcher.matches()) {
-            FacesUtils.handleError(context, message);
+            throw new ValidatorException(FacesUtils.buildErrorFacesMessage(context, message));
         }
-    }
-
-   /* private void handleValidationError(FacesContext context) {
-        String messageBundle = context.getApplication().getMessageBundle();
-        Locale locale = context.getViewRoot().getLocale();
-        final ResourceBundle bundle = ResourceBundle.getBundle(messageBundle, locale);
-        final FacesMessage facesMessage = new FacesMessage();
-        String dMessage = message;
-        try {
-            dMessage = bundle.getString(message);
-        } catch (MissingResourceException e) {
-            //do nothing
-        }
-        facesMessage.setDetail(dMessage);
-        facesMessage.setSummary(dMessage);
-        facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
-        throw new ValidatorException(facesMessage);
-    }*/
-
-    public String getRegex() {
-        return regex;
     }
 
     public void setRegex(String regex) {
         this.regex = regex;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public void setMessage(String message) {

@@ -44,6 +44,11 @@ public abstract class FacesUtils {
     }
 
     public static void handleError(FacesContext context, String message, String id) {
+        final FacesMessage facesMessage = buildErrorFacesMessage(context, message);
+        context.addMessage(id, facesMessage);
+    }
+
+    public static FacesMessage buildErrorFacesMessage(FacesContext context, String message) {
         String messageBundle = context.getApplication().getMessageBundle();
         Locale locale = context.getViewRoot().getLocale();
         final ResourceBundle bundle = getBundle(messageBundle, locale);
@@ -57,6 +62,8 @@ public abstract class FacesUtils {
         facesMessage.setDetail(dMessage);
         facesMessage.setSummary(dMessage);
         facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
-        context.addMessage(id, facesMessage);
+        return facesMessage;
     }
+
+
 }

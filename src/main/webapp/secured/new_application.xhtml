@@ -8,6 +8,9 @@
                 template="/templates/masterLayout.xhtml">
     <f:loadBundle basename="Resources" var="bundle"/>
     <ui:define name="content">
+        <h:outputText value="#{bundle.new_application_title}" styleClass="formtitle"/>
+        <br/>
+        <br/>
         <h:form id="form">
            <h:messages styleClass="errors" globalOnly="true"/>
             <m:metawidget value="#{mApplication}">

@@ -81,7 +81,7 @@ public class ManagedUser extends User {
     @UiMasked
     @UiRequired
     @UiComesAfter(value = "userName")
-    @UiAttribute(name = MINIMUM_LENGTH, value = "5")
+    @Regex(pattern = "((?=.*\\d)(?=.*\\w).{5,100})", message = "invalid.password")
     @CompId(name = "password")
     public String getPassword() {
         return super.getPassword();
@@ -90,7 +90,6 @@ public class ManagedUser extends User {
     @UiMasked
     @UiRequired
     @UiComesAfter(value = "password")
-    @UiAttribute(name = MINIMUM_LENGTH, value = "5")
     @EqualField(field = "password", message = "password_missmatching")
     public String getRepeatPassword() {
         return repeatPassword;

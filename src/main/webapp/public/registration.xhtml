@@ -4,6 +4,9 @@
                 template="/templates/masterLayout.xhtml">
     <f:loadBundle basename="Resources" var="bundle"/>
     <ui:define name="content">
+        <h:outputText value="#{bundle.create_user_title}" styleClass="formtitle"/>
+        <br/>
+        <br/>
         <h:form id="regiform">
             <h:messages styleClass="errors" globalOnly="true"/>
             <m:metawidget value="#{mUser}">

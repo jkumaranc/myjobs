@@ -8,6 +8,9 @@
                 xmlns:m="http://metawidget.org/faces"
                 template="/templates/masterLayout.xhtml">
     <f:loadBundle basename="Resources" var="bundle"/>
+    <h:outputText value="#{bundle.edit_application_title}" styleClass="formtitle"/>
+    <br/>
+    <br/>
     <ui:define name="content">
         <h:form id="form">
             <f:param name="messageStyleClass" value="inline-error"/>
@@ -58,7 +61,6 @@
                             <h:commandButton id="add" value="#{bundle.add}" action="#{mApplications.addUpdate}"/>
                         </f:facet>
                     </h:column>
-
                 </h:dataTable>
             </m:stub>
         </h:form>
