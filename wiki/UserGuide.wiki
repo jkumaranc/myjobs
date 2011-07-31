@@ -1,0 +1,22 @@
+#summary MyJobs is a demo application to showcase some of the features of [http://metawidget.org metawidget], JSF2, Spring Security!
+
+= Intro duction =
+This application is a simple web module which has spring security based authentication and authorisation with JSF2. The initial idea to start this project to play with some of the metawidget features. But eventually the application had other web framework features included. 
+
+= Features =
+
+== Metawidget ==
+Metawidget is used for all the beans. If you look at the XHTML files, the content is kept minimal, readable and maintainable. All the validations are done through annotations.
+
+==Pure JSF2 based MVC architecture ==
+There is a big discussion among the JSF community on how to use MVC architecture. JSF itself is taking care of most of the MVC model implicitly. I have used a slightly different approach on using the controllers. The controllers are still the ManagedBeans but the domain model objects don't have the framework specific code or even the annotations. The controller beans extend the model object and override the getters which require the annotations for validations and other UI decorations. Model objects are kept away from the framework specific code. This gives a very visible MVC architecture and make the code more testable also.
+
+==Domain Driven Design==
+Not a fully fledged domain driven design used. But I use Repository patters and make the User class as the aggregate Root object.
+
+== Spring Security ==
+Integrating Spring Security with JSF2 is not an easy ride most of the times. Here the User object is extending the UserDetails and spring-security based taglibs added in the web.xml to support the authorisation support at UI. The navigation menu is different for ANONYMOUS user and ROLE_USER privileges.
+In addition, InMemoryDao is used for keeping the Authentication details.
+Login/Logout features supported.
+
+== 
