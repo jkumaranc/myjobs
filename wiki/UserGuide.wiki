@@ -28,6 +28,8 @@ Not a fully fledged domain driven design used though. But I use Repository patte
 == Spring Security ==
 Integrating Spring Security with JSF2 is not an easy ride for most of the times. Here the User object is extending the UserDetails and spring-security based taglibs added in the web.xml to support the authorisation support at UI. The navigation menu is different for ANONYMOUS user and ROLE_USER privileges.
 
+Registration page is allowed for ANONYMOUS users. But the applications related pages require ROLE_USER page.  
+
 In addition, InMemoryDao is used for keeping the Authentication details.
 Login/Logout features supported.
 
