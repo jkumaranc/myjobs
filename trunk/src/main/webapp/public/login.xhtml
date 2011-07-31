@@ -9,8 +9,14 @@
         <h:link value="#{bundle.login_register}" styleClass="formtitle" outcome="/public/registration.jsf"/>
         <br/>
         <br/>
+        <h:panelGroup rendered="#{not empty param.login_error}" styleClass="errors">
+            <h:outputText value="${bundle.login_error_message}"/>
+            <br/>
+            <h:outputText value="${bundle.reason}"/>
+            <h:outputText value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
+        </h:panelGroup>
+
         <form action="../j_spring_security_check" method="POST">
-            <h:messages/>
             <fieldset>
                 <legend><h:outputText value="#{bundle.login_header2}"/></legend>
                 <br/>
