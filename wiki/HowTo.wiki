@@ -6,6 +6,7 @@ README for checkout and run the system
 #  Maven Version 3
 #  Tomcat version 6 or more
 
+----
 
 == How to install? ==
 #  Checkout the source from google code project
@@ -18,8 +19,10 @@ mvn clean install
 ALTERNATIVELY you can run the application from maven by issuing the command
 mvn clean tomcat:runwar
 
+----
+
 == How to use the system? ==
-----------------------
+
 #  Open the browser
 http://127.0.0.1:8080/myjobs
 
