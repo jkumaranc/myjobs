@@ -15,7 +15,9 @@ import javax.faces.render.Renderer;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
+import javax.xml.bind.ValidationException;
 
+import org.jk.myjobs.utils.FacesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,14 +25,16 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import static org.jk.myjobs.utils.FacesUtils.buildErrorFacesMessage;
+
 
 /**
  * Validate two fields are equal
  *
  * @author pmuir
  * @author Daniel Roth
- *
- * Updated from SEAM, so referred them!
+ *         <p/>
+ *         Updated from SEAM, so referred them!
  */
 @FacesValidator(value = "org.jboss.seam.ui.validator.Equality")
 public class EqualityValidator implements Validator, PartialStateHolder {
@@ -96,32 +100,32 @@ public class EqualityValidator implements Validator, PartialStateHolder {
             switch (operator) {
                 case EQUAL:
                     if (!value.equals(other)) {
-                        throwValidationException(context, value, otherComponent, other);
+                        throw new ValidatorException(buildErrorFacesMessage(context, message));
                     }
                     break;
                 case NOT_EQUAL:
                     if (value.equals(other)) {
-                        throwValidationException(context, value, otherComponent, other);
+                        throw new ValidatorException(buildErrorFacesMessage(context, message));
                     }
                     break;
                 case GREATER:
                     if (!(compare(value, other) > 0)) {
-                        throwValidationException(context, value, otherComponent, other);
+                        throw new ValidatorException(buildErrorFacesMessage(context, message));
                     }
                     break;
                 case GREATER_OR_EQUAL:
                     if (!(compare(value, other) >= 0)) {
-                        throwValidationException(context, value, otherComponent, other);
+                        throw new ValidatorException(buildErrorFacesMessage(context, message));
                     }
                     break;
                 case LESS:
                     if (!(compare(value, other) < 0)) {
-                        throwValidationException(context, value, otherComponent, other);
+                        throw new ValidatorException(buildErrorFacesMessage(context, message));
                     }
                     break;
                 case LESS_OR_EQUAL:
                     if (!(compare(value, other) <= 0)) {
-                        throwValidationException(context, value, otherComponent, other);
+                        throw new ValidatorException(buildErrorFacesMessage(context, message));
                     }
                     break;
             }
@@ -138,23 +142,6 @@ public class EqualityValidator implements Validator, PartialStateHolder {
 
     }
 
-    private void throwValidationException(FacesContext context, Object value, UIComponent otherComponent, Object other) {
-        String messageBundle = context.getApplication().getMessageBundle();
-        Locale locale = context.getViewRoot().getLocale();
-        final ResourceBundle bundle = ResourceBundle.getBundle(messageBundle, locale);
-        final FacesMessage facesMessage = new FacesMessage();
-        String dMessage = getMessage();
-        try {
-            dMessage = bundle.getString(getMessageId());
-        } catch (MissingResourceException e) {
-            //do nothing
-        }
-        facesMessage.setDetail(dMessage);
-        facesMessage.setSummary(dMessage);
-        facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
-        throw new ValidatorException(facesMessage);
-    }
-
     public String getFor() {
         return forId;
     }
@@ -163,16 +150,8 @@ public class EqualityValidator implements Validator, PartialStateHolder {
         this.forId = forId;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getMessageId() {
-        return messageId;
     }
 
     public void setMessageId(String messageId) {
@@ -182,7 +161,6 @@ public class EqualityValidator implements Validator, PartialStateHolder {
     public boolean isTransient() {
         return false;
     }
-
 
     //////////
 

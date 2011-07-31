@@ -7,6 +7,9 @@
                 template="/templates/masterLayout.xhtml">
     <f:loadBundle basename="Resources" var="bundle"/>
     <ui:define name="content">
+        <h:outputText value="#{bundle.applications_title}" styleClass="formtitle"/>
+        <br/>
+        <br/>
         <h:messages styleClass="errors"/>
         <h:panelGroup rendered="#{!mApplications.user.hasApplications}">
             <h:outputText value="#{bundle.noapps}" styleClass="formtitle"/>

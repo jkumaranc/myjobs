@@ -71,6 +71,7 @@ public class ManagedApplications {
             handleError("Error when adding the application");
         }finally {
            applicationTable = null;
+           updatesTable = null;
         }
         return "/secured/applications.jsf";
     }
@@ -102,6 +103,7 @@ public class ManagedApplications {
            handleError("Error when deleting the application");
         } finally {
             applicationTable = null;
+            updatesTable = null;
         }
         return "/secured/applications.jsf";
     }

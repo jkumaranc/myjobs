@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd">
 
     <display-name>
-        Address Book (Metawidget Java Server Faces Example)
+       MyJobs Simple Demo Application for JSF2, Spring-Secutiry, Metawidget Integration
     </display-name>
 
     <!--
