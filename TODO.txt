@@ -1,5 +1,7 @@
-1) Add Test Cases
+1) Add Test Cases with JMock and HttpUnit
 2) Develop and deploy in cloudfoundary/appengine
 3) Update the wiki more
 4) Blog about the features used
 5) Add the licence contents to non-java files also
+6) Cancel Buttons
+7) Add initial data

@@ -146,8 +146,7 @@ p {
 .errors {
     display: block;
     padding: 5px;
-    background-color: #ff8888;
-    border: 2px solid red;
+    color: #880000;
     margin-bottom: 20px;
 }
 
@@ -206,7 +205,7 @@ p {
 }
 
 input, textarea, select {
-    font-family: Arial;
+    font-family: Arial,serif;
 }
 
 /*
@@ -223,7 +222,7 @@ input, textarea, select {
 .data-table th, .data-table .header {
     height: 20px;
     border-bottom: 1px solid #B3B3FF;
-    font-family: "Trebuchet MS";
+    font-family: "Trebuchet MS",serif;
     color: #003333;
     background-color: #92b0bf;
 }
@@ -242,7 +241,11 @@ input, textarea, select {
     text-align: center;
 }
 
-.buttons {
+/*.buttons {
+    background-color: #ccccff;
+    border-color: #1f1f33;
+    color: #1f1f33;
+    font-weight: bold;
     padding-top: 10px;
     white-space: nowrap;
     text-align: center;
@@ -255,7 +258,7 @@ input, textarea, select {
     font-size: 10pt;
     font-weight: bold;
     margin-right: 5px;
-}
+}*/
 
 .table-buttons input, .table-buttons button {
     border: 1px solid #B3B3FF;
@@ -309,4 +312,34 @@ legend {
     background: #ccccff;
     border: 1px solid #ccccff;
     padding: 2px 6px
+}
+
+.buttons {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}.buttons:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}.buttons:active {
+	position:relative;
+	top:1px;
 }
