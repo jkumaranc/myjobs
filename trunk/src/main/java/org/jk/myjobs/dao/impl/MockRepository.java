@@ -13,11 +13,16 @@
  **/
 package org.jk.myjobs.dao.impl;
 
+import org.jk.myjobs.RepositoryException;
 import org.jk.myjobs.dao.Repository;
 import org.jk.myjobs.domain.User;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.memory.InMemoryDaoImpl;
+import org.springframework.security.core.userdetails.memory.UserMap;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,12 +36,12 @@ import static org.slf4j.LoggerFactory.getLogger;
  * This is a mock repository which holds the user details
  * This will be replaced by a JPA/Hibernate based repository later!
  */
-public class MockRepository implements Repository{
+public class MockRepository implements Repository {
     private static final Logger LOGGER = getLogger(MockRepository.class);
 
     @Autowired(required = true)
     private InMemoryDaoImpl inMemoryDao;
-    private Map<String, User> users; //users map with user name as the key
+    Map<String, User> users; //users map with user name as the key
 
     public MockRepository() {
         users = new HashMap<String, User>();
@@ -44,15 +49,37 @@ public class MockRepository implements Repository{
         users.put("rafael", new User("Rafael Nadal", "rafael", "rafael", "rafael@claycourt.com", "Spain"));
     }
 
-    public void createUser(User user) {
+    public void createUser(User user) throws RepositoryException {
         LOGGER.info("Adding the user : " + user);
-        users.put(user.getUserName(), user);
+        String userName = user.getUserName();
+        if(isUserExists(userName)){
+           throw new RepositoryException("The user " + userName + " already exists");
+        }
+        users.put(userName, user);
         inMemoryDao.getUserMap().addUser(user);
     }
 
-    public void updateUser(User user) {
+    public void updateUser(User user) throws RepositoryException {
         LOGGER.info("Updating the user : " + user);
-        users.put(user.getUserName(), user);
+        String userName = user.getUserName();
+        if(!isUserExists(userName)){
+          throw new RepositoryException("No user with user name " + userName + " exists");
+        }
+        users.put(userName, user);//just replacing, not the best logic!
+        inMemoryDao.getUserMap().addUser(user);//Spring does the same thing too!!
+    }
+
+    private boolean isUserExists(String userName) {
+        User user = users.get(userName);
+        if (user == null) {
+            return false;
+        }
+        try {
+           inMemoryDao.loadUserByUsername(user.getUsername());
+        } catch (UsernameNotFoundException e) {
+            return false;
+        }
+        return true;
     }
 
     public User findUser(String userName) {
@@ -66,5 +93,15 @@ public class MockRepository implements Repository{
 
     public void setInMemoryDao(InMemoryDaoImpl inMemoryDao) {
         this.inMemoryDao = inMemoryDao;
+    }
+
+    public void deleteUser(String username) {
+        users.remove(username);
+        UserMap userMap = inMemoryDao.getUserMap();
+        UserMap newUserMap = new UserMap();
+        for (String userKey : users.keySet()) {
+            newUserMap.addUser(userMap.getUser(userKey));
+        }
+        inMemoryDao.setUserMap(newUserMap);
     }
 }

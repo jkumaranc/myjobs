@@ -4,11 +4,12 @@
                 template="/templates/masterLayout.xhtml">
     <f:loadBundle basename="Resources" var="bundle"/>
     <ui:define name="content">
-        <h:form id="form">
+        <h:form id="regiform">
+            <h:messages styleClass="errors" globalOnly="true"/>
             <m:metawidget value="#{mUser}">
                 <f:param name="messageStyleClass" value="inline-error"/>
             </m:metawidget>
-            <h:commandButton id="submit" value="Submit" action="#{mUser.createUser}"/>
+            <h:commandButton id="submit" value="Submit" action="#{mUser.createUser}" styleClass="buttons"/>
         </h:form>
     </ui:define>
 </ui:composition>

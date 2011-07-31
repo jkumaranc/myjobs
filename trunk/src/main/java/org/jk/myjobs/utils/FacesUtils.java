@@ -15,6 +15,13 @@ package org.jk.myjobs.utils;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
+import static java.util.ResourceBundle.getBundle;
+import static javax.faces.context.FacesContext.getCurrentInstance;
 
 /**
  * User: JK
@@ -23,19 +30,33 @@ import javax.faces.context.FacesContext;
  */
 public abstract class FacesUtils {
     public static String getBundleKey(String key) {
-        return FacesContext.getCurrentInstance().getApplication().getResourceBundle(FacesContext.getCurrentInstance(), "msg").getString(key);
+        String messageBundle = getCurrentInstance().getApplication().getMessageBundle();
+        Locale locale = getCurrentInstance().getViewRoot().getLocale();
+        return getBundle(messageBundle, locale).getString(key);
     }
 
-    public static void addSuccessMessage(String msg) {
-        addMessage(FacesMessage.SEVERITY_INFO, msg);
+    public static void handleError(FacesContext context, String message) {
+        handleError(context, message, null);
     }
 
-    public static void addErrorMessage(String msg) {
-        addMessage(FacesMessage.SEVERITY_ERROR, msg);
+    public static void handleError(String message) {
+        handleError(getCurrentInstance(), message, null);
     }
 
-    private static void addMessage(FacesMessage.Severity severity, String msg) {
-        final FacesMessage facesMsg = new FacesMessage(severity, msg, msg);
-        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+    public static void handleError(FacesContext context, String message, String id) {
+        String messageBundle = context.getApplication().getMessageBundle();
+        Locale locale = context.getViewRoot().getLocale();
+        final ResourceBundle bundle = getBundle(messageBundle, locale);
+        final FacesMessage facesMessage = new FacesMessage();
+        String dMessage = message;
+        try {
+            dMessage = bundle.getString(message);
+        } catch (MissingResourceException e) {
+            //do nothing
+        }
+        facesMessage.setDetail(dMessage);
+        facesMessage.setSummary(dMessage);
+        facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
+        context.addMessage(id, facesMessage);
     }
 }

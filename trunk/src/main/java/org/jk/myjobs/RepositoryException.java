@@ -11,23 +11,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-
-package org.jk.myjobs.dao;
-
-import org.jk.myjobs.RepositoryException;
-import org.jk.myjobs.domain.User;
+package org.jk.myjobs;
 
 /**
  * User: JK
- * Date: 27/07/11
+ * Date: 31/07/11
  * email: jkumaranc@yahoo.com
  * //TODO add the doc pls!
  */
-public interface Repository {
+public class RepositoryException extends Exception{
 
-   void createUser(User user) throws RepositoryException;
+    public RepositoryException(String message) {
+        super(message);
+    }
 
-    void updateUser(User user) throws RepositoryException;
-
-    User findUser(String userName);
+    public RepositoryException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

@@ -13,12 +13,14 @@
  **/
 package org.jk.myjobs.managedbeans;
 
+import org.jk.myjobs.RepositoryException;
 import org.jk.myjobs.dao.Repository;
 import org.jk.myjobs.domain.Application;
 import org.jk.myjobs.domain.User;
 import org.jk.myjobs.inspectors.annotations.CompId;
 import org.jk.myjobs.inspectors.annotations.EqualField;
 import org.jk.myjobs.inspectors.annotations.Regex;
+import org.jk.myjobs.utils.FacesUtils;
 import org.metawidget.inspector.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,10 +29,12 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import java.util.Collection;
 import java.util.List;
 
+import static org.jk.myjobs.utils.FacesUtils.handleError;
 import static org.metawidget.inspector.InspectionResultConstants.MINIMUM_LENGTH;
 
 /**
@@ -50,8 +54,14 @@ public class ManagedUser extends User {
     private transient String repeatPassword;
 
     public String createUser() {
-        repository.createUser(this);
-        LOGGER.info("New is created : " + getUserName());
+        try {
+            repository.createUser(this);
+            LOGGER.info("New is created : " + getUserName());
+        } catch (RepositoryException e) {
+            LOGGER.error("Error when adding the user ", e);
+            handleError(FacesContext.getCurrentInstance(), "The user already exists");
+            return null;
+        }
         return "/public/login.jsf";
     }
 
@@ -139,12 +149,12 @@ public class ManagedUser extends User {
         return super.getApplications();
     }
 
-   @UiHidden
+    @UiHidden
     public boolean isHasApplications() {
         return super.isHasApplications();
     }
 
-   @UiHidden
+    @UiHidden
     public Collection<GrantedAuthority> getAuthorities() {
         return super.getAuthorities();
     }

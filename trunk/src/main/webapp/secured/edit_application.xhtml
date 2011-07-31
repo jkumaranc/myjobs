@@ -10,10 +10,11 @@
     <f:loadBundle basename="Resources" var="bundle"/>
     <ui:define name="content">
         <h:form id="form">
+            <f:param name="messageStyleClass" value="inline-error"/>
             <m:metawidget value="#{mApplications.mApplication}">
                 <f:param name="messageStyleClass" value="inline-error"/>
             </m:metawidget>
-            <h:commandButton id="submit" value="Update" action="#{mApplications.updateApplication}"/>
+            <h:commandButton id="submit" value="Update" action="#{mApplications.updateApplication}" styleClass="buttons"/>
             <m:stub value="#{mApplications.mApplication.updates}">
                 <h:dataTable id="applicationTable" value="#{mApplications.updatesTable}" var="_update"
                              styleClass="data-table"

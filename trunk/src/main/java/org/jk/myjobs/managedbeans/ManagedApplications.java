@@ -13,10 +13,12 @@
  **/
 package org.jk.myjobs.managedbeans;
 
+import org.jk.myjobs.RepositoryException;
 import org.jk.myjobs.dao.Repository;
 import org.jk.myjobs.domain.Application;
 import org.jk.myjobs.domain.Update;
 import org.jk.myjobs.domain.User;
+import org.jk.myjobs.utils.FacesUtils;
 import org.metawidget.inspector.annotation.UiHidden;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.jk.myjobs.utils.FacesUtils.getBundleKey;
+import static org.jk.myjobs.utils.FacesUtils.handleError;
 
 /**
  * User: JK
@@ -60,41 +63,71 @@ public class ManagedApplications {
         Application application = (Application) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("mApplication");
         application.addUpdate(new Update(getBundleKey(NEW_JOB_UPDATE_MSG), getBundleKey(NEW_JOB_UPDATE_TODO)));
         getUser().getApplications().add(application);
-        repository.updateUser(getUser());
-        LOGGER.info("Applied a new application for " + application.getCompanyName());
+        try {
+            repository.updateUser(getUser());
+            LOGGER.info("Applied a new application for " + application.getCompanyName());
+        } catch (RepositoryException e) {
+            LOGGER.error("Error when adding the app ", e);
+            handleError("Error when adding the application");
+        }finally {
+           applicationTable = null;
+        }
         return "/secured/applications.jsf";
     }
 
     public String addUpdate() {
         update.setDate(new Date());
         mApplication.addUpdate(update);
-        repository.updateUser(getUser());
-        update = null;
-        updatesTable = null;
-        LOGGER.info("Applied a new update for " + mApplication.getCompanyName());
+        try {
+            repository.updateUser(getUser());
+            LOGGER.info("Applied a new update for " + mApplication.getCompanyName());
+        } catch (RepositoryException e) {
+            LOGGER.error("Error when adding the update ", e);
+            handleError("Error when adding the Update");
+        } finally {
+            update = null;
+            updatesTable = null;
+        }
         return "/secured/edit_application.jsf";
     }
 
     public String deleteApplication() {
         Application application = applicationTable.getRowData();
         getUser().getApplications().remove(application);
-        repository.updateUser(getUser());
-        applicationTable = null;
-        LOGGER.info("Deleted an application from " + mApplication.getCompanyName());
+        try {
+            repository.updateUser(getUser());
+            LOGGER.info("Deleted an application from " + mApplication.getCompanyName());
+        } catch (RepositoryException e) {
+            LOGGER.error("Error when deleting the app ", e);
+           handleError("Error when deleting the application");
+        } finally {
+            applicationTable = null;
+        }
         return "/secured/applications.jsf";
     }
 
     public String editApplication() {
         mApplication = applicationTable.getRowData();
-        repository.updateUser(getUser());
-        applicationTable = null;
-        LOGGER.info("Edited an application for "  + mApplication.getCompanyName());
+        try {
+            repository.updateUser(getUser());
+            LOGGER.info("Edited an application for " + mApplication.getCompanyName());
+        } catch (RepositoryException e) {
+            LOGGER.error("Error when editing the app ", e);
+            handleError("Error when editing the application");
+        } finally {
+            applicationTable = null;
+        }
         return "/secured/edit_application.jsf";
     }
 
     public String updateApplication() {
-        repository.updateUser(getUser());
-        LOGGER.info("Updated an application " + mApplication.getCompanyName());
+        try {
+            repository.updateUser(getUser());
+            LOGGER.info("Updated an application " + mApplication.getCompanyName());
+        } catch (RepositoryException e) {
+            LOGGER.error("Error when updating the app ", e);
+           handleError("Error when updating the application");
+        }
         return "/secured/edit_application.jsf";
     }
 

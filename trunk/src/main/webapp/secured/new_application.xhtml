@@ -9,11 +9,12 @@
     <f:loadBundle basename="Resources" var="bundle"/>
     <ui:define name="content">
         <h:form id="form">
+           <h:messages styleClass="errors" globalOnly="true"/>
             <m:metawidget value="#{mApplication}">
                 <f:param name="messageStyleClass" value="inline-error"/>
-                <h:commandButton id="SubmitApp" value="#{bundle.new_application}"
-                                 action="#{mApplications.addApplication}"/>
             </m:metawidget>
+            <h:commandButton id="SubmitApp" value="#{bundle.new_application}" action="#{mApplications.addApplication}"
+                             styleClass="buttons"/>
         </h:form>
     </ui:define>
 </ui:composition>

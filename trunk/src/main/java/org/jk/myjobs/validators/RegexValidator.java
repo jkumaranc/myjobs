@@ -13,6 +13,8 @@
  **/
 package org.jk.myjobs.validators;
 
+import org.jk.myjobs.utils.FacesUtils;
+
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -43,11 +45,11 @@ public class RegexValidator implements Validator, PartialStateHolder {
         final Pattern mask = Pattern.compile(regex);
         final Matcher matcher = mask.matcher(String.valueOf(value));
         if (!matcher.matches()) {
-            handleValidationError(context);
+            FacesUtils.handleError(context, message);
         }
     }
 
-    private void handleValidationError(FacesContext context) {
+   /* private void handleValidationError(FacesContext context) {
         String messageBundle = context.getApplication().getMessageBundle();
         Locale locale = context.getViewRoot().getLocale();
         final ResourceBundle bundle = ResourceBundle.getBundle(messageBundle, locale);
@@ -62,7 +64,7 @@ public class RegexValidator implements Validator, PartialStateHolder {
         facesMessage.setSummary(dMessage);
         facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
         throw new ValidatorException(facesMessage);
-    }
+    }*/
 
     public String getRegex() {
         return regex;
