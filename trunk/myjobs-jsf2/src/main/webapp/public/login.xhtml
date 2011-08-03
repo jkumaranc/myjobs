@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core_rt"
+                template="/templates/masterLayout.xhtml">
+    <f:loadBundle basename="Resources" var="bundle"/>
+    <h:outputStylesheet name="myjobs.css"/>
+    <ui:define name="content">
+        <h:outputText value="#{bundle.login_header1}" styleClass="formtitle"/>
+        <h:link value="#{bundle.login_register}" styleClass="formtitle" outcome="/public/registration.jsf"/>
+        <br/>
+        <br/>
+        <h:panelGroup rendered="#{not empty param.login_error}" styleClass="errors">
+            <h:outputText value="${bundle.login_error_message}"/>
+            <br/>
+            <h:outputText value="${bundle.reason}"/>
+            <h:outputText value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
+        </h:panelGroup>
+
+        <form action="../j_spring_security_check" method="POST">
+            <fieldset>
+                <legend><h:outputText value="#{bundle.login_header2}"/></legend>
+                <br/>
+                <h:outputLabel for="j_username"><h:outputText value="#{bundle.username}"/><br/> </h:outputLabel>
+                <h:inputText id="j_username" required="true"></h:inputText>
+                <br/>
+                <br/>
+                <h:outputLabel for="j_password"><h:outputText value="#{bundle.password}"/><br/></h:outputLabel>
+                <h:inputSecret id="j_password" required="true"></h:inputSecret>
+                <br/>
+                <h:selectBooleanCheckbox type='checkbox' name='_spring_security_remember_me'/>
+                <h:outputText value="#{bundle.rememberme}"/>
+                <br/>
+                <h:commandButton id="login" value="#{bundle.login_command}"/>
+            </fieldset>
+        </form>
+    </ui:define>
+</ui:composition>

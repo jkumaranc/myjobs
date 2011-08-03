@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:m="http://metawidget.org/faces"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/masterLayout.xhtml">
+    <f:loadBundle basename="Resources" var="bundle"/>
+    <ui:define name="content">
+        <h:outputText value="#{bundle.new_application_title}" styleClass="formtitle"/>
+        <br/>
+        <br/>
+        <h:form id="form">
+           <h:messages styleClass="errors" globalOnly="true"/>
+            <m:metawidget value="#{mApplication}">
+                <f:param name="messageStyleClass" value="inline-error"/>
+            </m:metawidget>
+            <h:commandButton id="SubmitApp" value="#{bundle.new_application}" action="#{mApplications.addApplication}"
+                             styleClass="buttons"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
