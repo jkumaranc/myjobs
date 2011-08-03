@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:m="http://metawidget.org/faces" xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/masterLayout.xhtml">
+    <f:loadBundle basename="Resources" var="bundle"/>
+    <ui:define name="content">
+        <h:outputText value="#{bundle.create_user_title}" styleClass="formtitle"/>
+        <br/>
+        <br/>
+        <h:form id="regiform">
+            <h:messages styleClass="errors" globalOnly="true"/>
+            <m:metawidget value="#{mUser}">
+                <f:param name="messageStyleClass" value="inline-error"/>
+            </m:metawidget>
+            <h:commandButton id="submit" value="Submit" action="#{mUser.createUser}" styleClass="buttons"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

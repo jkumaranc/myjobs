@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<metawidget xmlns="http://metawidget.org"
+            xmlns:processor="java:org.metawidget.faces.component.widgetprocessor"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://metawidget.org http://metawidget.org/xsd/metawidget-1.0.xsd" version="1.0">
+
+    <htmlMetawidget xmlns="java:org.metawidget.faces.component.html">
+        <parameter>
+            <string>tableStyleClass</string>
+            <string>table-form</string>
+        </parameter>
+        <parameter>
+            <string>columnClasses</string>
+            <string>table-label-column,table-component-column,table-required-column</string>
+        </parameter>
+        <parameter>
+            <string>footerStyleClass</string>
+            <string>buttons</string>
+        </parameter>
+        <widgetBuilder>
+            <compositeWidgetBuilder xmlns="java:org.metawidget.widgetbuilder.composite"
+                                    config="CompositeWidgetBuilderConfig">
+                <widgetBuilders>
+                    <array>
+                        <overriddenWidgetBuilder xmlns="java:org.metawidget.faces.component.widgetbuilder"/>
+                        <readOnlyWidgetBuilder xmlns="java:org.metawidget.faces.component.html.widgetbuilder"/>
+                        <primeFacesWidgetBuilder
+                                xmlns="java:org.metawidget.faces.component.html.widgetbuilder.primefaces"/>
+                        <htmlWidgetBuilder xmlns="java:org.metawidget.faces.component.html.widgetbuilder"/>
+                    </array>
+                </widgetBuilders>
+            </compositeWidgetBuilder>
+        </widgetBuilder>
+        <inspector>
+            <compositeInspector xmlns="java:org.metawidget.inspector.composite" config="CompositeInspectorConfig">
+                <inspectors>
+                    <array>
+                        <propertyTypeInspector xmlns="java:org.metawidget.inspector.propertytype"/>
+                        <metawidgetAnnotationInspector xmlns="java:org.metawidget.inspector.annotation"/>
+                        <java5Inspector xmlns="java:org.metawidget.inspector.java5"/>
+                        <facesInspector xmlns="java:org.metawidget.inspector.faces"/>
+                        <xmlInspector xmlns="java:org.metawidget.inspector.xml" config="XmlInspectorConfig"/>
+                        <myJobsValidatorInspector xmlns="java:org.jk.myjobs.utils.inspectors"/>
+                    </array>
+                </inspectors>
+            </compositeInspector>
+        </inspector>
+        <layout>
+            <outputTextLayoutDecorator xmlns="java:org.metawidget.faces.component.html.layout"
+                                       config="OutputTextLayoutDecoratorConfig">
+                <layout>
+                    <simpleLayout xmlns="java:org.metawidget.faces.component.layout"/>
+                </layout>
+                <styleClass>
+                    <string>section-heading</string>
+                </styleClass>
+            </outputTextLayoutDecorator>
+        </layout>
+        <widgetProcessors>
+            <array>
+                <processor:requiredAttributeProcessor/>
+                <processor:immediateAttributeProcessor/>
+                <processor:standardBindingProcessor/>
+                <processor:readableIdProcessor/>
+                <processor:labelProcessor/>
+                <myJobsValidationProcessor xmlns="java:org.jk.myjobs.processors"/>
+                <processor:standardValidatorProcessor/>
+                <processor:standardConverterProcessor/>
+                <cssStyleProcessor xmlns="java:org.metawidget.faces.component.html.widgetprocessor"/>
+            </array>
+        </widgetProcessors>
+    </htmlMetawidget>
+
+
+</metawidget>
