@@ -4,7 +4,11 @@
     <groupId>org.jk.myjobs</groupId>
     <artifactId>myjobs</artifactId>
     <version>1.0</version>
-    <packaging>war</packaging>
+    <modules>
+        <module>utils</module>
+        <module>myjobs-jsf2</module>
+    </modules>
+    <packaging>pom</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.6</java.version>
@@ -70,16 +74,7 @@
             <artifactId>metawidget-all</artifactId>
             <version>1.25</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-api</artifactId>
-            <version>${myfaces2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-impl</artifactId>
-            <version>${myfaces2.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>el-api</artifactId>
@@ -159,11 +154,7 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>2.2</version>
-        </dependency>
+
         <!-- needed for javax.annotation.ManagedBean, @PostConstruct, @RolesAllowed, etc -->
         <dependency>
             <groupId>org.glassfish</groupId>
