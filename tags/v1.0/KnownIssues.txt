@@ -1,0 +1,2 @@
+1) No persistent ORM/NoSQL support
+2) No password encryption

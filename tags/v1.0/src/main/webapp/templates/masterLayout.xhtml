@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<f:loadBundle basename="Resources" var="bundle"/>
+<h:head>
+    <link href="../resources/myjobs.css" rel="stylesheet" type="text/css"/>
+    <title>
+        <ui:insert name="windowTitle">
+            #{bundle.placesWindowTitle}
+        </ui:insert>
+    </title>
+</h:head>
+
+<h:body>
+    <h:outputStylesheet name="myjobs.css"/>
+
+    <div id="container">
+        <div id="header">
+            <h1><h:outputText value="#{bundle.page_title}"/></h1>
+
+            <p class="description"><h:outputText value="#{bundle.tag_line}"/></p>
+        </div>
+        <div id="wrapper">
+            <div id="content">
+                <ui:insert name="content"/>
+            </div>
+        </div>
+        <div id="navigation">
+            <h2><h:outputText value="#{bundle.navigation}"/></h2>
+            <ul>
+                <h:panelGroup rendered="#{sec:areAnyGranted('ROLE_ADMIN, ROLE_USER')}">
+                    <li>
+                        <a href="/myjobs/secured/applications.jsf">#{bundle.applications}</a>
+                    </li>
+                    <li>
+                        <a href="/myjobs/secured/new_application.jsf">#{bundle.new_applications}</a>
+                    </li>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{sec:areNotGranted('ROLE_ADMIN, ROLE_USER')}">
+                    <li>
+                        <a href="/myjobs/public/registration.jsf">#{bundle.register}</a>
+                    </li>
+                </h:panelGroup>
+                <li>
+                    <a href="/myjobs/j_spring_security_logout">#{bundle.logout}</a>
+                </li>
+                <li>
+                    <a href="http://jk-blogging.blogspot.com">#{bundle.blog}</a>
+                </li>
+            </ul>
+        </div>
+        <div id="extra">
+            <h2><h:outputText value="#{bundle.extra_title}"/></h2>
+            <br/>
+
+            <p><h:outputText value="#{bundle.extra_msg}"/></p>
+            <br/>
+            <small><h:outputText value="#{bundle.extra_msg2}"/></small>
+        </div>
+        <div id="footer"><h:outputText value="#{bundle.footer}"/></div>
+    </div>
+</h:body>
+</html>
